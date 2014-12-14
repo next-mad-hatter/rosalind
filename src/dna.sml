@@ -1,4 +1,9 @@
-exception Invalid
+(*
+ * $File$
+ * $Author$
+ * $Date$
+ * $Revision$
+ *)
 
 fun nuc_count s =
 let
@@ -19,10 +24,11 @@ fun to_s (x: int * int * int * int) =
 
 fun readLines () =
 let
-  fun read lines = case (TextIO.inputLine TextIO.stdIn) of
-                        NONE => lines
-                      | (SOME "") => read lines
-                      | (SOME l) => read (l::lines)
+  fun read lines =
+    case (TextIO.inputLine TextIO.stdIn) of
+         NONE => lines
+       | SOME "" => read lines
+       | SOME l => read (l::lines)
 in
   rev (read [])
 end
@@ -30,8 +36,9 @@ end
 val _ =
   let
     val ls = readLines ()
-    val cs = map (fn l => (((to_s o nuc_count) l) ^ "\n")) ls
+    val cs = map nuc_count ls
+    val res = map (fn x => x ^ "\n") (map to_s cs)
   in
-    map print cs
+    map print res
   end
 
