@@ -5,27 +5,24 @@
 # $Revision$
 #
 
-#
-# TODO
-#
-
-#
-# Herein, we compute F_n = F_(n-1) + k*F_(n-2)
-#
-
-def fib(k, mem, n)
+def rabbits(mem, m, n)
   return 0 if n < 0
-  mem[n] ||= fib(k, mem, n-1) + k*fib(k, mem, n-2)
+  mem[:rabbits] ||= [0, 1, 1]
+  mem[:rabbits][n] ||= rabbits(mem, m, n-1) - newborn(mem, m, n-m) + newborn(mem, m, n)
 end
 
-def fibs(k=1,  mem=nil)
-  mem ||= [0,1,1]
-  lambda{|n| fib(k, mem, n)}
+def newborn(mem, m, n)
+  return 0 if n < 0
+  mem[:newborn] ||= [0, 1, 0]
+  mem[:newborn][n] ||= rabbits(mem, m, n-1) - newborn(mem, m, n-1)
 end
 
-f = fibs(3)
+def fibs(m=3,  mem=Hash.new)
+  lambda{|n| rabbits(mem, m, n)}
+end
 
-m = 3
-(1..9).each do |n|
-  puts f.call(n)
+ARGF.readlines.map(&:strip).each do |x|
+  # We silently assume m > 1
+  n, m = *(x.split.map(&:to_i))
+  puts fibs(m).call(n)
 end
