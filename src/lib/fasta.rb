@@ -8,6 +8,9 @@
 class InvalidFasta < Exception
 end
 
+##
+# Common use case: read_fasta(ARGF.each_line)
+#
 def read_fasta(lines)
   res, key = Hash.new, nil
   lines.each do |line|
