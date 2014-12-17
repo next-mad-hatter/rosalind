@@ -9,6 +9,8 @@ require 'gmp'
 require 'mathn'
 require 'rational'
 
+require_relative 'lib/fasta'
+
 def gc_ord(x)
   if ["G","C"].include? x then 1 else 0 end
 end
@@ -19,18 +21,7 @@ end
 
 if __FILE__ == $0
 
-  hash, key = Hash.new, nil
-
-  ARGF.each_line do |line|
-    line.strip!
-    if /^>/ =~ line
-      key = line[1..-1]
-      hash[key] = ""
-    else
-      hash[key] += line
-    end
-  end
-
+  hash = read_fasta(ARGF.each_line)
   hash.each do |k,s|
     hash[k] = ((gc_count(s)/s.length).to_f)
   end
