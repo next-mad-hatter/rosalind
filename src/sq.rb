@@ -56,7 +56,7 @@ class SparseMatrix
     res = self.class.new
     size = @cache.keys.max
     (0..size).each do |i|
-      @cache[i].each{|x| res[i,i] += @vals[x] ** 2} if @cache[i]
+      self.adj(i).each{|x| res[i,i] += @vals[x] ** 2}
     end
     res
   end
