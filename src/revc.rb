@@ -5,5 +5,7 @@
 # $Revision$
 #
 
-ARGF.each_line{ |l| puts l.strip.split("").reverse.join("").gsub(/[ATCG]/,{"A" => "T", "T" => "A", "C" => "G", "G" => "C"})}
+require_relative 'lib/utils'
+
+ARGF.each_line{|l| puts revc(l)}
 

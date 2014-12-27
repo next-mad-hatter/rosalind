@@ -5,6 +5,14 @@
 # $Revision$
 #
 
+def dna_to_rna(str)
+  str.strip.gsub(/T/,"U")
+end
+
+def revc(str)
+  str.strip.split("").reverse.join("").gsub(/[ATCG]/,{"A" => "T", "T" => "A", "C" => "G", "G" => "C"})
+end
+
 def rna_to_prot_map
   trans = Hash.new
 <<EOF

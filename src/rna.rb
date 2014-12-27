@@ -5,5 +5,7 @@
 # $Revision$
 #
 
-ARGF.each_line{ |l| puts l.gsub(/T/,"U")}
+require_relative 'lib/utils'
+
+ARGF.each_line{ |l| puts dna_to_rna(l)}
 

@@ -5,7 +5,7 @@
 # $Revision$
 #
 
-require_relative 'lib/rna2prot'
+require_relative 'lib/utils'
 
 def cnt
   count = Hash.new(0)

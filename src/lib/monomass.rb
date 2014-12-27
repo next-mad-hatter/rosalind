@@ -7,7 +7,7 @@
 
 require 'rational'
 
-def monomass(x)
+def monomass
   masses = Hash[ *( <<EOF
   A   71.03711
   C   103.00919
@@ -31,5 +31,5 @@ def monomass(x)
   Y   163.06333
 EOF
   .split.map(&:strip).map{|z| if /^[A-Z]$/ =~ z then z else Rational(z) end})]
-  masses[x.upcase]
+  lambda{|x| masses[x.upcase]}
 end
