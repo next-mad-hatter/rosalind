@@ -10,7 +10,7 @@ def dna_to_rna(str)
 end
 
 def revc(str)
-  str.strip.split("").reverse.join("").gsub(/[ATCG]/,{"A" => "T", "T" => "A", "C" => "G", "G" => "C"})
+  str.strip.reverse.gsub(/[ATCG]/,{"A" => "T", "T" => "A", "C" => "G", "G" => "C"})
 end
 
 def rna_to_prot_map
