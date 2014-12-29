@@ -8,7 +8,7 @@
 require 'set'
 require_relative 'lib/edge_list'
 
-class SparseMatrix
+class SparseSymmetric
 
   attr_reader :vals
 
@@ -52,6 +52,9 @@ class SparseMatrix
     res
   end
 
+  ##
+  # Returns diagonal of squared self.
+  #
   def square_diag
     res = self.class.new
     size = @cache.keys.max
@@ -80,7 +83,7 @@ end
 2.times{ ARGF.readline }
 res = []
 read_graphs(ARGF.each_line, RGL::AdjacencyGraph).each do |gr|
-  mat = SparseMatrix.new
+  mat = SparseSymmetric.new
   (0..gr.size-1).each do |i|
     (i+1..gr.size-1).each do |j|
       mat[i,j] = 1 if gr.has_edge?(i+1,j+1)
