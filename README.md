@@ -1,1 +1,4 @@
-# Solutions to Rosalind Problems
+# Rosalind Problems -- Solutions
+
+See http://rosalind.info/users/mad_hatter/
+
